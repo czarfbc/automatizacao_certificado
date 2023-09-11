@@ -37,3 +37,4 @@ for index, row in tabela_info_alunos.iterrows():
         arquivo.write(conteudo_arquivo)
 
     print(f"Arquivo {arquivo_nome} criado.")
+    
