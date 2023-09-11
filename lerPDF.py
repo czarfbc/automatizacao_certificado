@@ -20,16 +20,19 @@ tabela_info_alunos = tabela_info_alunos.dropna(subset=["Colaborador"], how="any"
 print(tabulate(tabela_info_curso,headers='keys',tablefmt='pretty'))
 print(tabulate(tabela_info_alunos, headers='keys', tablefmt='pretty'))
 
-# Itera sobre as linhas da tabela_info_alunos e cria um arquivo .txt para cada uma
+topico_assunto = tabela_info_curso['Tópico/Assunto']
+primeira_linha_topico = topico_assunto.iloc[0]
+
+duracao = tabela_info_curso['Duração']
+primeira_linha_duracao = duracao.iloc[0]
+
 for index, row in tabela_info_alunos.iterrows():
     colaborador_rg = row['RG']
     colaborador_nome = row['Colaborador']
     arquivo_nome = f"Certificado_{colaborador_nome} {colaborador_rg}.pdf"
 
-    # Conteúdo que você deseja escrever no arquivo (no exemplo, deixei em branco)
-    conteudo_arquivo = f"Pintor, CPF.:{colaborador_rg}, realizou com êxito o TREINAMENTO DE NR – 35 – TRABALHO EM ALTURA, com duração de 8 (Oito) horas, de acordo com a exigência da Norma Regulamentadora NR 35, portaria SEPRT 915 do Ministério do Trabalho."
+    conteudo_arquivo = f"Pintor, CPF.:{colaborador_rg}, realizou com êxito o {primeira_linha_topico}, com duração de {primeira_linha_duracao}, de acordo com a exigência da Norma Regulamentadora NR 35, portaria SEPRT 915 do Ministério do Trabalho."
 
-    # Escreve o conteúdo no arquivo
     with open(arquivo_nome, 'w') as arquivo:
         arquivo.write(conteudo_arquivo)
 
