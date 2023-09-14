@@ -1,8 +1,7 @@
 import tabula
 import pandas as pd
 from tabulate import tabulate
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import PDF
+from fazerPDF import construcao__pdf
 
 lista_tabelas = tabula.read_pdf("teste.pdf", pages="1", multiple_tables=True)
 
