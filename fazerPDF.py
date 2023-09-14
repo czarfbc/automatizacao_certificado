@@ -51,7 +51,8 @@ def data__assinatura(cnv, colaborador_nome):
     cnv.drawString(mm__to__p(15), mm__to__p(19), nome__formatado)
 
 def construcao__pdf(colaborador_nome, colaborador_rg, primeira_linha_topico, primeira_linha_duracao):
-    cnv = canvas.Canvas(nome_arquivo(colaborador_nome, colaborador_rg), pagesize=PDF)
+    nome__pdf = nome_arquivo(colaborador_nome, colaborador_rg)
+    cnv = canvas.Canvas(nome__pdf, pagesize=PDF)
     cnv.rect(mm__to__p(5), mm__to__p(7.2), mm__to__p(244), mm__to__p(176))
     certificado(cnv)
     especializada(cnv)

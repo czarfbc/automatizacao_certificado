@@ -28,4 +28,6 @@ primeira_linha_duracao = duracao.iloc[0]
 for index, row in tabela_info_alunos.iterrows():
     colaborador_rg = row['RG']
     colaborador_nome = row['Colaborador']
-    construcao__pdf(colaborador_nome, colaborador_rg, primeira_linha_topico, primeira_linha_duracao)
+    colaborador_nome_replace = colaborador_nome.replace(" ", "_")
+    construcao__pdf(colaborador_nome_replace, colaborador_rg, primeira_linha_topico, primeira_linha_duracao)
+    print(colaborador_nome_replace)
