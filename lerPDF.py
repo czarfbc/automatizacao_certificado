@@ -28,12 +28,4 @@ primeira_linha_duracao = duracao.iloc[0]
 for index, row in tabela_info_alunos.iterrows():
     colaborador_rg = row['RG']
     colaborador_nome = row['Colaborador']
-    arquivo_nome = f"Certificado_{colaborador_nome}_{colaborador_rg}.pdf"
-
-    conteudo_arquivo = f"Pintor, CPF.:{colaborador_rg}, realizou com êxito o {primeira_linha_topico}, com duração de {primeira_linha_duracao}, de acordo com a exigência da Norma Regulamentadora NR 35, portaria SEPRT 915 do Ministério do Trabalho."
-
-    with open(arquivo_nome, 'w') as arquivo:
-        arquivo.write(conteudo_arquivo)
-
-    print(f"Arquivo {arquivo_nome} criado.")
-    
+    construcao__pdf(colaborador_nome, colaborador_rg, primeira_linha_topico, primeira_linha_duracao)

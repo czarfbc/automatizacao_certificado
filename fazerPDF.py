@@ -5,6 +5,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 
+#=================================FAZER PDF========================================
 pdfmetrics.registerFont(TTFont('Poppins-Regular', './Poppins/Poppins-Regular.ttf'))
 pdfmetrics.registerFont(TTFont('Poppins-Bold', './Poppins/Poppins-Bold.ttf'))
 pdfmetrics.registerFont(TTFont('Poppins-Medium', './Poppins/Poppins-Bold.ttf'))
@@ -58,5 +59,4 @@ def construcao__pdf(colaborador_nome, colaborador_rg, primeira_linha_topico, pri
     texto(cnv, colaborador_rg, primeira_linha_topico, primeira_linha_duracao)
     data__assinatura(cnv, colaborador_nome)
 
-    cnv.save()
-construcao__pdf('nome', '12345678910', 'topico', '08 horas')
+    cnv.save()  
