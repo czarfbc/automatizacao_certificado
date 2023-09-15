@@ -3,12 +3,11 @@ from reportlab.lib.pagesizes import PDF
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-
+from unidecode import unidecode
 
 # =================================FAZER PDF========================================
 pdfmetrics.registerFont(TTFont('Poppins-Regular', './Poppins/Poppins-Regular.ttf'))
 pdfmetrics.registerFont(TTFont('Poppins-Bold', './Poppins/Poppins-Bold.ttf'))
-pdfmetrics.registerFont(TTFont('Poppins-Medium', './Poppins/Poppins-Bold.ttf'))
 pdfmetrics.registerFont(TTFont('FiraCode-Bold', '../../../../Downloads/Fira_Code_v6.2/ttf/FiraCode-Bold.ttf'))
 
 largura_pagina = letter[0]
@@ -34,9 +33,10 @@ def especializada(cnv):
     cnv.drawString(mm__to__p(15), mm__to__p(147), f"A ESS – Especializada em Segurança e Saúde Ocupacional certifica que:")
 
 def nome(cnv, colaborador_nome):
-    cnv.setFont('Poppins-Medium', 21)
-    largura__texto__nome = cnv.stringWidth(colaborador_nome, 'Poppins-Medium', 21)
-    cnv.drawString(centralizar__x(largura_pagina, largura__texto__nome), mm__to__p(125), colaborador_nome)
+    cnv.setFont('Poppins-Bold', 21)
+    largura__texto__nome = cnv.stringWidth(colaborador_nome, 'Poppins-Bold', 21)
+    nome__formatado = unidecode(colaborador_nome).upper()
+    cnv.drawString(centralizar__x(largura_pagina, largura__texto__nome), mm__to__p(125), nome__formatado)
 
 def texto(cnv, colaborador_rg, primeira_linha_topico, primeira_linha_duracao):
     texto = f"Pintor, CPF.:{colaborador_rg}, realizou com êxito o {primeira_linha_topico}, com duração de {primeira_linha_duracao}, de acordo com a exigência da Norma Regulamentadora NR 35, portaria SEPRT 915 do Ministério do Trabalho."
