@@ -5,7 +5,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 
-#=================================FAZER PDF========================================
+# =================================FAZER PDF========================================
 pdfmetrics.registerFont(TTFont('Poppins-Regular', './Poppins/Poppins-Regular.ttf'))
 pdfmetrics.registerFont(TTFont('Poppins-Bold', './Poppins/Poppins-Bold.ttf'))
 pdfmetrics.registerFont(TTFont('Poppins-Medium', './Poppins/Poppins-Bold.ttf'))
@@ -80,6 +80,10 @@ def data__assinatura(cnv, colaborador_nome):
     nome__formatado = colaborador_nome.title()
     cnv.drawString(mm__to__p(15), mm__to__p(19), nome__formatado)
 
+
+def colocar_logo(cnv):
+    cnv.drawImage('logo-gestro.png', mm__to__p(15), mm__to__p(156), width=105, height=57, mask='auto')
+
 def construcao__pdf(colaborador_nome, colaborador_nome_replace, colaborador_rg, primeira_linha_topico, primeira_linha_duracao):
     nome__pdf = nome_arquivo(colaborador_nome_replace, colaborador_rg)
     cnv = canvas.Canvas(nome__pdf, pagesize=PDF)
@@ -89,5 +93,6 @@ def construcao__pdf(colaborador_nome, colaborador_nome_replace, colaborador_rg, 
     nome(cnv, colaborador_nome)
     texto(cnv, colaborador_rg, primeira_linha_topico, primeira_linha_duracao)
     data__assinatura(cnv, colaborador_nome)
+    colocar_logo(cnv)
 
     cnv.save()  
