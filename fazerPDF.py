@@ -11,6 +11,7 @@ pdfmetrics.registerFont(TTFont('Poppins-Bold', './Poppins/Poppins-Bold.ttf'))
 pdfmetrics.registerFont(TTFont('FiraCode-Bold', '../../../../Downloads/Fira_Code_v6.2/ttf/FiraCode-Bold.ttf'))
 
 largura_pagina = letter[0]
+largura_pagina2 = letter[1]
 
 def mm__to__p(mm):
     return mm / 0.352777
@@ -24,9 +25,9 @@ def nome_arquivo(colaborador_nome, colaborador_rg):
 
 def certificado(cnv):
     cnv.setFont('FiraCode-Bold', 30)
-    texto__certificado = f'CERTIFICADO'
-    largura__texto__certificado = cnv.stringWidth(texto__certificado, 'FiraCode-Bold', 30)
-    cnv.drawString(centralizar__x(largura_pagina, largura__texto__certificado), mm__to__p(163), texto__certificado)
+    texto = f'CERTIFICADO'
+    largura__texto = cnv.stringWidth(texto, 'FiraCode-Bold', 30)
+    cnv.drawString(centralizar__x(largura_pagina, largura__texto), mm__to__p(163), texto)
 
 def especializada(cnv):
     cnv.setFont('Poppins-Regular', 12.7)
@@ -84,6 +85,11 @@ def data__assinatura(cnv, colaborador_nome):
 def colocar_logo(cnv):
     cnv.drawImage('logo-gestro.png', mm__to__p(15), mm__to__p(156), width=105, height=57, mask='auto')
 
+def conteudo__progamatico(cnv):
+    cnv.setFont('FiraCode-Bold', 24)
+    texto = f'CERTIFICADO PROGAMÁTICO DO CURSO:'
+    cnv.drawString(mm__to__p(46), mm__to__p(163), texto)
+
 def construcao__pdf(colaborador_nome, colaborador_nome_replace, colaborador_rg, primeira_linha_topico, primeira_linha_duracao):
     nome__pdf = nome_arquivo(colaborador_nome_replace, colaborador_rg)
     cnv = canvas.Canvas(nome__pdf, pagesize=PDF)
@@ -94,5 +100,10 @@ def construcao__pdf(colaborador_nome, colaborador_nome_replace, colaborador_rg, 
     texto(cnv, colaborador_rg, primeira_linha_topico, primeira_linha_duracao)
     data__assinatura(cnv, colaborador_nome)
     colocar_logo(cnv)
+    
+
+    cnv.showPage()
+    cnv.rect(mm__to__p(9), mm__to__p(17), mm__to__p(236), mm__to__p(162))
+    conteudo__progamatico(cnv)
 
     cnv.save()  
