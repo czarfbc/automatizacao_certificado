@@ -49,8 +49,11 @@ def texto(cnv, colaborador_rg, primeira_linha_topico, primeira_linha_duracao):
         cnv.drawString(x, y, linha)
         y -= tamanho_fonte * 1.2 
 
-def colocar_logo(cnv):
-    cnv.drawImage('logo-gestro.png', mm__to__p(15), mm__to__p(156), width=105, height=57, mask='auto')
+def colocar_imagens(cnv):
+    cnv.drawImage('./imagens/logo-gestro.png', mm__to__p(15), mm__to__p(156), width=105, height=57, mask='auto')
+
+    cnv.drawImage('./imagens/assinatura.png', mm__to__p(168), mm__to__p(45), width=205, height=123, mask='auto')
+    
 
 def data__assinatura(cnv, colaborador_nome):
     cnv.setFont('Poppins-Regular', 15)
@@ -68,5 +71,5 @@ def primeira_pagina_pdf(cnv, colaborador_nome, colaborador_rg, primeira_linha_to
     especializada(cnv)
     nome(cnv, colaborador_nome, largura_pagina, unidecode)
     texto(cnv, colaborador_rg, primeira_linha_topico, primeira_linha_duracao)
-    colocar_logo(cnv)
+    colocar_imagens(cnv)
     data__assinatura(cnv, colaborador_nome)
